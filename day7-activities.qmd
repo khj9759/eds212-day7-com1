@@ -1,0 +1,11 @@
+---
+title: "Day7-activities"
+format: html
+editor: visual
+---
+
+## Task 1: Joins on birds
+
+```{r}
+
+```
