@@ -2,6 +2,8 @@
 title: "Day7"
 format: html
 editor: visual
+execute: 
+  warning: false
 ---
 
 ```{r}
@@ -12,10 +14,10 @@ library(palmerpenguins)
 ## Data wrangling refresher
 
 1.  starting from penguins, write a single pipe sequence in which you:
-    -   only include penguins at Dream and Biscoe lslands
+    -   **Only** include penguins at Dream and Biscoe lslands
     -   Remove the year and sex variables
-    -   add a new column body_mass_kg with penguin mass converted from g to kg
-    -   rename the island variable to location
+    -   Add a new column body_mass_kg with penguin mass converted from g to kg
+    -   Rename the island variable to location
 
 ```{r}
 penguins %>% filter (island  %in% c("Dream","Biscoe")) %>%
@@ -29,7 +31,7 @@ penguins %>% filter (island  %in% c("Dream","Biscoe")) %>%
     -   Limit to Adelie penguins
     -   Remove any observations where filpper_length_mm is NA(!is.na()) or drop_na)
     -   Group the data by sex
-    -   create a summary table that contains the mean, standard deviation and sample size of flipper length for male and female Adelie penguins.
+    -   Create a summary table that contains the mean, standard deviation and sample size of flipper length for male and female Adelie penguins.
 
     ```{r}
     adelie_summary <- penguins %>% 
@@ -48,4 +50,41 @@ penguins %>%
 
 # Count() is just wrapping together group_by() + summarize() + n() to get counts of obsevations. 
 penguins %>% count (species, island, sex)
+```
+
+```{r}
+animals <- data.frame(
+  stringsAsFactors = FALSE,
+          location = c("lagoon", "bluff", "creek", "oaks", "bluff"),
+           species = c("bobcat", "coyote", "fox", "squirrel", "bobcat"),
+          maturity = c("adult", "juvenile", "adult", "juvenile", "adult")
+)
+```
+
+```{r}
+sites <- data.frame(
+  stringsAsFactors = FALSE,
+          location = c("beach", "lagoon", "bluff", "oaks"),
+    full_site_name = c("Goleta Beach","UCSB Lagoon",
+                       "Ellwood Mesa","Fremont Campground"),
+      jurisdiction = c("SB City", "UCSB", "SB City", "USFS")
+)
+```
+
+## full_join(x,y):
+
+```{r}
+full_join_example <- full_join (animals, sites)
+```
+
+## left_join(x,y):
+
+```{r}
+left_join_example <- left_join (animals, sites)
+```
+
+## inner_join(x,y): 
+
+```{r}
+inner_join_example <- inner_join (animals, sites)
 ```
